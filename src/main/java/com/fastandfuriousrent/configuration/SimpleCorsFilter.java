@@ -9,11 +9,23 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimpleCorsFilter implements Filter {
+
+    private static final Set<String> ALLOWED_ORIGINS = new HashSet<>();
+
+    static {
+        // Agrega las URLs permitidas aquí
+        ALLOWED_ORIGINS.add("https://rentar-car-frontend.vercel.app");
+        // Agrega más dominios si es necesario
+    }
+
+
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
